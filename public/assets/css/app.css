@@ -1,0 +1,3093 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --bg: #f3f4f6;
+  --card: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --line: rgba(15, 23, 42, .10);
+
+  --black: #0b0f17;
+  --black2: #121826;
+
+  --green: #16a34a;
+  --red: #dc2626;
+  --yellow: #f59e0b;
+
+  --radius: 14px;
+  --shadow: 0 6px 18px rgba(0, 0, 0, .06);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+}
+
+html,
+body {
+  overflow-x: hidden;
+}
+
+body {
+  font-family:
+    'Inter',
+    ui-sans-serif,
+    system-ui,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    Roboto,
+    'Helvetica Neue',
+    Arial,
+    sans-serif,
+    'Apple Color Emoji',
+    'Segoe UI Emoji',
+    'Segoe UI Symbol',
+    'Noto Color Emoji';
+}
+
+/* evita scroll lateral por overflow */
+body {
+  margin: 0;
+  color: var(--text);
+}
+
+/* ===== AUTH ===== */
+.auth-body {
+  background: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px;
+}
+
+/* LOGIN SEM CAIXA (igual Assessor) */
+.auth-card {
+  width: min(380px, 100%);
+  border: 0;
+  border-radius: 0;
+  padding: 0;
+  background: transparent;
+  box-shadow: none;
+}
+
+/* Marca / topo */
+.auth-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+
+.brand-mark {
+  width: 22px;
+  height: 22px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #ff3d8d, #7c3aed);
+}
+
+.brand-name,
+.brand-text {
+  font-weight: 700;
+  letter-spacing: .2px;
+}
+
+/* Títulos */
+.auth-title {
+  margin: 10px 0 6px;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.auth-subtitle {
+  margin: 0 0 18px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 13px;
+}
+
+/* Alertas */
+.alert {
+  background: #fff5f5;
+  border: 1px solid rgba(220, 38, 38, .25);
+  color: #991b1b;
+  padding: 10px 12px;
+  border-radius: 12px;
+  margin-bottom: 12px;
+  font-size: 13px;
+}
+
+/* Campos */
+.field {
+  display: block;
+  margin: 12px 0;
+}
+
+.field span {
+  display: block;
+  font-size: 12px;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+
+.field input {
+  width: 100%;
+  padding: 12px 14px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+}
+
+.field input::placeholder {
+  color: #94a3b8;
+}
+
+.field input:focus {
+  border-color: rgba(124, 58, 237, .45);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, .10);
+}
+
+/* Botão */
+.btn {
+  border: 0;
+  padding: 12px 14px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.btn-black {
+  width: 100%;
+  background: #000;
+  color: #fff;
+}
+
+.btn-black:hover {
+  opacity: .92;
+}
+
+/* Links */
+.auth-links {
+  margin-top: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+  font-size: 13px;
+}
+
+.auth-links a {
+  color: var(--text);
+  text-decoration: none;
+  opacity: .9;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+}
+
+/* ===== APP SHELL ===== */
+.app-body {
+  background: var(--bg);
+}
+
+.app-shell {
+  min-height: 100vh;
+}
+
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: var(--black);
+  color: #fff;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 12px 16px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, .12);
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.brand-text {
+  color: #fff;
+  font-weight: 700;
+}
+
+.topbar-nav {
+  display: flex;
+  gap: 14px;
+  flex: 1;
+  justify-content: center;
+}
+
+.topbar-nav a {
+  color: rgba(255, 255, 255, .86);
+  text-decoration: none;
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 10px;
+}
+
+.topbar-nav a.active,
+.topbar-nav a:hover {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+/* ✅ CORRIGIDO: definido uma única vez (antes tinha duplicado) */
+.topbar-right {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.topbar-link {
+  color: rgba(255, 255, 255, .86);
+  text-decoration: none;
+  font-size: 13px;
+}
+
+.topbar-link:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.app-main {
+  max-width: 1200px;
+  margin: 18px auto;
+  padding: 0 16px 32px;
+  width: 100%;
+}
+
+/* ===== SIDEBAR (mobile) ===== */
+.burger {
+  display: none;
+}
+
+.icon-btn {
+  border: 1px solid rgba(255, 255, 255, .12);
+  background: transparent;
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 12px;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+}
+
+.icon-btn:hover {
+  background: rgba(255, 255, 255, .06);
+}
+
+.burger span {
+  display: block;
+  width: 16px;
+  height: 2px;
+  background: #fff;
+  margin: 2px 0;
+  border-radius: 2px;
+}
+
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 280px;
+  background: var(--black2);
+  color: #fff;
+  transform: translateX(-110%);
+  transition: transform .2s ease;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, .08);
+}
+
+.sidebar-links {
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-links a {
+  color: rgba(255, 255, 255, .88);
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.sidebar-links a.active,
+.sidebar-links a:hover {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+/* ✅ CORRIGIDO: sidebar-footer definido uma única vez e no tema escuro */
+.sidebar-footer {
+  margin-top: auto;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border-top: 1px solid rgba(255, 255, 255, .08);
+  background: transparent;
+}
+
+.sidebar-footer a {
+  color: rgba(255, 255, 255, .88);
+  text-decoration: none;
+  padding: 10px 10px;
+  border-radius: 12px;
+  font-size: 14px;
+}
+
+.sidebar-footer a:hover {
+  background: rgba(255, 255, 255, .08);
+  color: #fff;
+}
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+/* ===== CATEGORIES MODAL (centered) ===== */
+.cat-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(.98);
+  transition: opacity .18s ease, transform .18s ease;
+}
+
+.cat-modal.open {
+  opacity: 1;
+  pointer-events: auto;
+  transform: scale(1);
+}
+
+.cat-dialog {
+  width: min(620px, 100%);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, .22);
+  overflow: hidden;
+}
+
+.cat-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, .08);
+}
+
+.cat-title {
+  font-weight: 700;
+  font-size: 16px;
+}
+
+.cat-x {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, .12);
+  background: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 0;
+}
+
+.cat-x:hover {
+  background: #f8fafc;
+}
+
+.cat-body {
+  padding: 16px;
+}
+
+.cat-label {
+  display: block;
+  font-size: 12px;
+  color: var(--muted);
+  margin: 0 0 8px;
+  font-weight: 600;
+}
+
+.cat-input {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+.cat-input:focus {
+  border-color: rgba(124, 58, 237, .45);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, .10);
+}
+
+.cat-colors {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin: 10px 0 14px;
+}
+
+.cat-swatch {
+  width: 22px;
+  height: 22px;
+  border-radius: 999px;
+  border: 2px solid rgba(15, 23, 42, .10);
+  cursor: pointer;
+  padding: 0;
+  background: transparent;
+}
+
+.cat-swatch:hover {
+  transform: translateY(-1px);
+}
+
+.cat-color-row {
+  display: grid;
+  grid-template-columns: 54px 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.cat-colorpicker {
+  width: 54px;
+  height: 44px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  padding: 0;
+  background: #fff;
+  cursor: pointer;
+}
+
+.cat-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(15, 23, 42, .08);
+  background: #fff;
+}
+
+.cat-btn {
+  border: 0;
+  border-radius: 12px;
+  padding: 10px 12px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.cat-btn.ghost {
+  border: 1px solid var(--line);
+  background: #fff;
+}
+
+.cat-btn.ghost:hover {
+  background: #f8fafc;
+}
+
+.cat-btn.primary {
+  background: #0b1220;
+  color: #fff;
+  min-width: 180px;
+}
+
+.cat-btn.primary:hover {
+  opacity: .92;
+}
+
+@media (max-width: 520px) {
+  .cat-foot {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .cat-btn.primary {
+    width: 100%;
+  }
+}
+
+/* ===== PAGE ===== */
+.page {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-width: 0;
+}
+
+.page-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  min-width: 0;
+}
+
+.page-head.simple {
+  align-items: center;
+}
+
+.page-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.period-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.period-title {
+  font-size: 20px;
+  font-weight: 600;
+}
+
+/* ===== Setas do mês (Dashboard = Agenda) ===== */
+.period-nav .icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+
+  color: rgba(15, 23, 42, .55);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, transform .1s ease;
+}
+
+.period-nav .icon-btn:hover {
+  background: #eef2f7;
+  color: #2563eb;
+}
+
+.period-nav .icon-btn:active {
+  transform: scale(.96);
+}
+
+.period-nav .icon-btn:focus-visible {
+  outline: none;
+  background: #eef2f7;
+  color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+.segmented {
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  padding: 4px;
+  display: flex;
+  gap: 4px;
+}
+
+.segmented a {
+  text-decoration: none;
+  color: var(--text);
+  font-size: 13px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  min-width: 70px;
+  text-align: center;
+}
+
+.segmented a.active {
+  background: #f1f5f9;
+  border: 1px solid rgba(15, 23, 42, .08);
+}
+
+/* ===== CARDS ===== */
+.card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  max-width: 100%;
+  overflow: hidden;
+  /* evita vazar no mobile */
+}
+
+.card-pad {
+  padding: 16px;
+}
+
+/* ✅ REMOVE a “caixa branca” atrás (Categorias/Cartões)
+   Use no HTML/PHP: <div class="card card-ghost"> ... </div> */
+.card.card-ghost {
+  background: transparent !important;
+  border: 0 !important;
+  box-shadow: none !important;
+  overflow: visible !important;
+}
+
+.card.card-ghost .card-pad {
+  padding: 0 !important;
+}
+
+.card-title-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 10px;
+}
+
+.card-title {
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.small {
+  font-size: 12px;
+}
+
+.kpi {
+  font-size: 34px;
+  font-weight: 700;
+  letter-spacing: -.5px;
+  margin-top: 6px;
+}
+
+.kpi.green {
+  color: var(--green);
+}
+
+.kpi.red {
+  color: var(--red);
+}
+
+.kpi-delta {
+  font-size: 12px;
+  padding: 8px 10px;
+  border-radius: 12px;
+  border: 1px solid var(--line);
+  background: #fff;
+  color: var(--muted);
+}
+
+.kpi-delta.down {
+  color: var(--red);
+  border-color: rgba(220, 38, 38, .18);
+}
+
+.card-kpi-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.split {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 10px;
+}
+
+.green {
+  color: var(--green);
+}
+
+.red {
+  color: var(--red);
+}
+
+.grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  min-width: 0;
+}
+
+.grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  min-width: 0;
+}
+
+.mini-line {
+  height: 60px;
+  margin-top: 12px;
+}
+
+.chart-line {
+  height: 260px;
+}
+
+/* Canvas responsivo (Chart.js) */
+canvas {
+  max-width: 100% !important;
+  height: auto !important;
+  display: block;
+}
+
+.donut-wrap {
+  display: grid;
+  grid-template-columns: 170px 1fr;
+  gap: 12px;
+  align-items: center;
+  min-width: 0;
+}
+
+.donut-canvas {
+  width: 170px;
+  height: 170px;
+}
+
+.donut-canvas canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.legend-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 7px 0;
+  border-bottom: 1px dashed rgba(15, 23, 42, .10);
+}
+
+.legend-row:last-child {
+  border-bottom: 0;
+}
+
+.dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, .35);
+}
+
+.legend-name {
+  font-size: 13px;
+  color: var(--text);
+}
+
+.legend-val {
+  margin-left: auto;
+  font-size: 13px;
+  color: var(--muted);
+}
+
+.pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  font-size: 12px;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(15, 23, 42, .10);
+  background: #fff;
+  white-space: nowrap;
+}
+
+.pill-green {
+  color: var(--green);
+  border-color: rgba(22, 163, 74, .22);
+  background: rgba(22, 163, 74, .07);
+}
+
+.pill-red {
+  color: var(--red);
+  border-color: rgba(220, 38, 38, .22);
+  background: rgba(220, 38, 38, .07);
+}
+
+.pill-yellow {
+  color: #a16207;
+  border-color: rgba(245, 158, 11, .28);
+  background: rgba(245, 158, 11, .12);
+}
+
+.tabs {
+  display: flex;
+  gap: 8px;
+}
+
+.tab {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 8px 10px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.tab.active {
+  background: #f1f5f9;
+}
+
+/* ===== TABLE ===== */
+.table-wrap {
+  overflow: auto;
+}
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  min-width: 850px;
+}
+
+.table thead th {
+  font-size: 12px;
+  text-align: left;
+  color: var(--muted);
+  padding: 12px 14px;
+  border-bottom: 1px solid var(--line);
+  background: #fff;
+  position: sticky;
+  top: 0;
+}
+
+.table tbody td {
+  padding: 12px 14px;
+  border-bottom: 1px solid rgba(15, 23, 42, .06);
+  font-size: 13px;
+}
+
+.table tbody tr:hover td {
+  background: #fafafa;
+}
+
+.right {
+  text-align: right;
+}
+
+.link-btn {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 13px;
+  padding: 6px 8px;
+  color: #0f172a;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}
+
+.link-btn.danger {
+  color: var(--red);
+}
+
+.table-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 14px;
+}
+
+.pager-btn {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+}
+
+.pager-btn:disabled {
+  opacity: .5;
+  cursor: not-allowed;
+}
+
+.pager-pages {
+  display: flex;
+  gap: 8px;
+}
+
+.pager-pill {
+  width: 32px;
+  height: 32px;
+  border-radius: 10px;
+  border: 1px solid var(--line);
+  display: grid;
+  place-items: center;
+  font-size: 13px;
+  background: #fff;
+}
+
+.pager-pill.active {
+  background: #f1f5f9;
+  font-weight: 700;
+}
+
+/* ===== LIST (Categories) ===== */
+/* ✅ Agora cada item vira um “card” separado (sem caixa branca atrás) */
+.list {
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.list-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 16px 18px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 14px;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
+}
+
+.list-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.color-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 999px;
+}
+
+.list-name {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.list-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+/* ===== ACTION ICONS (igual ao print) ===== */
+.icon-action {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: transparent;
+  border: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: background .18s ease;
+}
+
+/* ÍCONES */
+.icon-action i {
+  font-size: 15px;
+  line-height: 1;
+}
+
+/* EDITAR */
+.icon-action.edit i {
+  color: #2563eb;
+}
+
+.icon-action.edit:hover {
+  background: rgba(37, 99, 235, .12);
+}
+
+/* EXCLUIR */
+.icon-action.delete i {
+  color: #ef4444;
+}
+
+.icon-action.delete:hover {
+  background: rgba(239, 68, 68, .15);
+}
+
+/* fallback se tiver <a> no lugar de <button> */
+a.icon-action {
+  text-decoration: none;
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 980px) {
+  .grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .donut-wrap {
+    grid-template-columns: 1fr;
+  }
+
+  .donut-canvas {
+    width: 100%;
+    height: 180px;
+  }
+}
+
+/* DESKTOP/TABLET: mostra menu topo e esconde hamburger */
+@media (min-width: 769px) {
+  .topbar-nav {
+    display: flex;
+  }
+
+  .burger {
+    display: none;
+  }
+}
+
+/* MOBILE: esconde menu topo e mostra hamburger */
+@media (max-width: 768px) {
+  .topbar-nav {
+    display: none;
+  }
+
+  .burger {
+    display: grid;
+  }
+
+  /* categorias no mobile como seu print (cards mais “altos”) */
+  .list-row {
+    padding: 18px 18px;
+    border-radius: 16px;
+  }
+
+  .list-name {
+    font-size: 15px;
+  }
+
+  /* opcional: footer da sidebar com padding maior no mobile */
+  .sidebar-footer {
+    padding: 14px 12px;
+  }
+
+  .topbar-right,
+  .user-actions {
+    display: none !important;
+  }
+
+}
+
+/* Mobile pequeno: evita estourar header e cards */
+@media (max-width: 520px) {
+  .app-main {
+    padding: 0 12px 24px;
+  }
+
+  .period-title {
+    font-size: 18px;
+  }
+
+  .kpi {
+    font-size: 30px;
+  }
+
+  .page-head {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .period-nav {
+    justify-content: center;
+    width: 100%;
+  }
+
+  .segmented {
+    width: 100%;
+  }
+
+  .segmented a {
+    min-width: 0;
+    flex: 1;
+  }
+
+  .chart-line {
+    height: 210px;
+  }
+
+  .mini-line {
+    height: 55px;
+  }
+}
+
+/* ===== MODAL ===== */
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .45);
+  z-index: 1000;
+}
+
+.modal {
+  position: fixed;
+  inset: 0;
+  z-index: 1010;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 16px;
+}
+
+.modal[hidden],
+.modal-backdrop[hidden] {
+  display: none !important;
+}
+
+.modal-dialog {
+  width: min(560px, 100%);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 18px;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, .22);
+  overflow: hidden;
+}
+
+.modal-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  padding: 14px 16px;
+  border-bottom: 1px solid rgba(15, 23, 42, .08);
+}
+
+.modal-title {
+  font-weight: 700;
+  font-size: 14px;
+}
+
+.modal-x {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, .12);
+  background: #fff;
+  cursor: pointer;
+  font-size: 20px;
+  line-height: 0;
+}
+
+.modal-x:hover {
+  background: #f8fafc;
+}
+
+.modal-body {
+  padding: 16px;
+}
+
+.modal-foot {
+  display: flex;
+  justify-content: flex-end;
+  gap: 10px;
+  padding: 14px 16px;
+  border-top: 1px solid rgba(15, 23, 42, .08);
+  background: #fff;
+}
+
+.form-row {
+  display: grid;
+  gap: 8px;
+  margin: 12px 0;
+}
+
+.form-row label {
+  font-size: 12px;
+  color: var(--muted);
+}
+
+.form-row input[type="text"],
+.form-row input[type="date"],
+.form-row input[type="number"] {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+}
+
+.form-row input:focus {
+  border-color: rgba(124, 58, 237, .45);
+  box-shadow: 0 0 0 4px rgba(124, 58, 237, .10);
+}
+
+.btn-ghost {
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.btn-ghost:hover {
+  background: #f8fafc;
+}
+
+.btn-danger {
+  border: 0;
+  background: var(--red);
+  color: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+  cursor: pointer;
+  font-weight: 800;
+}
+
+.btn-danger:hover {
+  opacity: .92;
+}
+
+/* ===== Minha Conta (tabs) ===== */
+.account-tabs {
+  display: flex;
+  gap: 22px;
+  padding: 6px 2px 10px;
+  border-bottom: 1px solid var(--line);
+}
+
+.account-tab {
+  text-decoration: none;
+  color: rgba(15, 23, 42, .70);
+  font-size: 13px;
+  padding: 10px 2px;
+  border-bottom: 2px solid transparent;
+}
+
+.account-tab:hover {
+  color: var(--text);
+}
+
+.account-tab.active {
+  color: var(--text);
+  font-weight: 700;
+  border-bottom-color: var(--text);
+}
+
+.account-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.account-title {
+  margin: 0;
+  font-size: 18px;
+}
+
+.account-subtitle {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.account-actions {
+  display: flex;
+  gap: 10px;
+}
+
+.account-grid-3 {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 14px;
+  margin-top: 14px;
+}
+
+.account-grid-2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.account-center {
+  display: flex;
+  justify-content: center;
+  margin-top: 10px;
+}
+
+.account-select {
+  width: 100%;
+  padding: 12px 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  outline: none;
+  font-size: 14px;
+  background: #fff;
+}
+
+/* ===== Plano ===== */
+.plan-head {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.plan-toggle {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.plan-card {
+  margin-top: 14px;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 16px;
+  background: #fff;
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  gap: 18px;
+}
+
+.plan-name {
+  font-weight: 800;
+}
+
+.plan-list {
+  margin: 12px 0 0;
+  padding-left: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+  color: rgba(15, 23, 42, .75);
+  font-size: 13px;
+}
+
+.plan-price {
+  margin-top: 18px;
+}
+
+.plan-value {
+  font-size: 28px;
+  font-weight: 900;
+}
+
+/* ===== Integrações ===== */
+.integr-head {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 14px;
+}
+
+.integr-toggle {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  white-space: nowrap;
+}
+
+.integr-box {
+  margin-top: 14px;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 14px;
+  padding: 14px 14px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.integr-email {
+  font-weight: 700;
+}
+
+/* ===== Switch (toggle) ===== */
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+}
+
+.switch input {
+  display: none;
+}
+
+.slider {
+  position: absolute;
+  cursor: pointer;
+  inset: 0;
+  background: #e2e8f0;
+  border-radius: 999px;
+  transition: .18s ease;
+}
+
+.slider:before {
+  content: "";
+  position: absolute;
+  height: 18px;
+  width: 18px;
+  left: 3px;
+  top: 3px;
+  background: #fff;
+  border-radius: 999px;
+  transition: .18s ease;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, .18);
+}
+
+.switch input:checked+.slider {
+  background: #16a34a;
+}
+
+.switch input:checked+.slider:before {
+  transform: translateX(20px);
+}
+
+/* ===== Responsivo ===== */
+@media (max-width: 980px) {
+  .account-grid-3 {
+    grid-template-columns: 1fr;
+  }
+
+  .account-grid-2 {
+    grid-template-columns: 1fr;
+  }
+
+  .plan-card {
+    flex-direction: column;
+  }
+
+  .integr-head {
+    flex-direction: column;
+  }
+
+  .integr-toggle {
+    justify-content: space-between;
+    width: 100%;
+  }
+}
+
+/* ===== Cards (Meus Cartões) ===== */
+.cards-list {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.card-item {
+  border: 1px solid rgba(15, 23, 42, .10);
+  border-radius: 14px;
+  background: #fff;
+  padding: 14px 14px;
+  box-shadow: 0 10px 24px rgba(2, 6, 23, .06);
+}
+
+.card-item-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.card-item-name {
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.card-ico {
+  opacity: .8;
+}
+
+.card-item-actions {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.card-progress {
+  margin-top: 10px;
+  height: 10px;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, .08);
+  overflow: hidden;
+}
+
+.card-progress-bar {
+  height: 100%;
+  border-radius: 999px;
+  background: rgba(15, 23, 42, .75);
+}
+
+.card-item-bottom {
+  margin-top: 10px;
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+/* ===== Agenda ===== */
+.agenda-wrap {
+  display: grid;
+  grid-template-columns: 1fr 520px;
+  gap: 22px;
+  align-items: start;
+}
+
+@media (max-width: 1200px) {
+  .agenda-wrap {
+    grid-template-columns: 1fr;
+  }
+}
+
+.agenda-cal-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.agenda-cal-nav {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Agenda: setas (normal = só seta / hover = círculo + seta azul) */
+.agenda-cal-nav .icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 999px;
+
+  /* NORMAL: sem círculo */
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+
+  /* seta em cinza */
+  color: rgba(15, 23, 42, .55);
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1;
+
+  cursor: pointer;
+  transition: background .15s ease, color .15s ease, transform .1s ease;
+}
+
+.agenda-cal-nav .icon-btn:hover {
+  background: #eef2f7;
+  /* tom do círculo */
+  color: #2563eb;
+  /* azul da seta */
+}
+
+.agenda-cal-nav .icon-btn:active {
+  transform: scale(.96);
+}
+
+.agenda-cal-nav .icon-btn:focus-visible {
+  outline: none;
+  background: #eef2f7;
+  color: #2563eb;
+  box-shadow: 0 0 0 3px rgba(37, 99, 235, .15);
+}
+
+.agenda-cal-month {
+  font-weight: 700;
+  text-transform: lowercase;
+  font-size: 18px;
+}
+
+.agenda-dow {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  padding: 10px 2px;
+  border-bottom: 1px solid rgba(15, 23, 42, .08);
+  color: rgba(15, 23, 42, .60);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: .04em;
+}
+
+.agenda-grid {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 10px;
+  padding-top: 12px;
+}
+
+.agenda-cell {
+  position: relative;
+  border: 1px solid rgba(15, 23, 42, .10);
+  background: #fff;
+  border-radius: 12px;
+  height: 72px;
+  padding: 10px;
+  text-align: left;
+  cursor: pointer;
+}
+
+.agenda-cell.muted {
+  opacity: .45;
+}
+
+.agenda-cell.selected {
+  background: rgba(15, 23, 42, .04);
+  border-color: rgba(15, 23, 42, .18);
+}
+
+.agenda-cell:not(.muted):hover {
+  background: rgba(15, 23, 42, .04);
+  border-color: rgba(15, 23, 42, .18);
+}
+
+/* Botão "Hoje": hover igual ao selecionado */
+.agenda-cal-head .btn:hover,
+.agenda-cal-head .btn-ghost:hover,
+.agenda-cal-head .pager-btn:hover,
+.agenda-cal-head button:hover {
+  background: rgba(15, 23, 42, .04);
+  border-color: rgba(15, 23, 42, .18);
+}
+
+.agenda-daynum {
+  font-weight: 700;
+  color: rgba(15, 23, 42, .90);
+}
+
+.agenda-dot {
+  position: absolute;
+  left: 14px;
+  bottom: 12px;
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #e11d48;
+  /* pontinho vermelho */
+}
+
+.agenda-day-title {
+  font-weight: 800;
+  font-size: 18px;
+}
+
+.agenda-hint {
+  margin-top: 12px;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 12px;
+  border-radius: 12px;
+  background: rgba(15, 23, 42, .03);
+}
+
+.agenda-wa {
+  width: 16px;
+  height: 16px;
+  border-radius: 4px;
+  background: #22c55e;
+  display: inline-block;
+}
+
+.agenda-evt {
+  position: relative;
+  margin-top: 14px;
+  border: 1px solid rgba(15, 23, 42, .10);
+  border-radius: 12px;
+  background: #fff;
+  padding: 14px 14px 14px 16px;
+  display: grid;
+  grid-template-columns: 1fr auto auto;
+  gap: 12px;
+  align-items: center;
+}
+
+.agenda-evt-bar {
+  position: absolute;
+  left: 0;
+  top: 10px;
+  bottom: 10px;
+  width: 4px;
+  border-radius: 999px;
+  background: #d946ef;
+  /* barra rosa */
+}
+
+.agenda-evt-title {
+  font-weight: 800;
+}
+
+.agenda-evt-time {
+  margin-top: 4px;
+  color: rgba(15, 23, 42, .65);
+  font-size: 13px;
+}
+
+.agenda-evt-rem {
+  color: rgba(15, 23, 42, .60);
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+.agenda-evt-more {
+  border: 0;
+  background: transparent;
+  color: rgba(15, 23, 42, .40);
+  cursor: pointer;
+  font-size: 20px;
+  padding: 6px 8px;
+}
+
+/* =========================
+   Agenda — Mobile layout
+   ========================= */
+@media (max-width: 768px) {
+  .agenda-wrap {
+    grid-template-columns: 1fr !important;
+    gap: 14px !important;
+  }
+
+  .page-title {
+    font-size: 22px;
+    line-height: 1.15;
+  }
+
+  .agenda-cal .card-pad {
+    padding: 14px !important;
+  }
+
+  .agenda-cal-head {
+    margin-bottom: 8px !important;
+  }
+
+  .agenda-cal-month {
+    font-size: 16px !important;
+  }
+
+  .agenda-dow {
+    gap: 6px !important;
+    padding: 8px 2px !important;
+    font-size: 11px !important;
+  }
+
+  .agenda-grid {
+    gap: 6px !important;
+    padding-top: 10px !important;
+  }
+
+  .agenda-cell {
+    height: 44px !important;
+    padding: 8px 0 !important;
+    border-radius: 10px !important;
+    text-align: center !important;
+  }
+
+  .agenda-daynum {
+    display: inline-block;
+    font-size: 13px !important;
+    font-weight: 700;
+  }
+
+  .agenda-dot {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
+    bottom: 7px !important;
+    width: 6px !important;
+    height: 6px !important;
+  }
+
+  .agenda-cal-head .btn {
+    padding: 8px 10px !important;
+    font-size: 13px !important;
+    border-radius: 10px !important;
+  }
+
+  .agenda-cal-nav .icon-btn {
+    width: 34px !important;
+    height: 34px !important;
+  }
+
+  .agenda-day .card-pad {
+    padding: 14px !important;
+  }
+
+  .agenda-day-title {
+    font-size: 16px !important;
+  }
+
+  .agenda-evt {
+    padding: 12px 12px 12px 14px !important;
+    grid-template-columns: 1fr auto !important;
+    gap: 10px !important;
+  }
+
+  .agenda-evt-more {
+    grid-column: 2;
+    justify-self: end;
+  }
+
+  .agenda-evt-rem {
+    font-size: 12px !important;
+  }
+}
+
+/* Mobile bem pequeno (tipo 360px) */
+@media (max-width: 420px) {
+  .agenda-cell {
+    height: 42px !important;
+  }
+
+  .agenda-cal-month {
+    font-size: 15px !important;
+  }
+
+  .agenda-dow {
+    font-size: 10px !important;
+  }
+
+  .agenda-cal-nav .icon-btn {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+/* ===== USER ACTIONS (Minha Conta | Sair) ===== */
+/* wrapper SEM FUNDO */
+.user-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+
+  padding: 0;
+  border: 0;
+  background: transparent;
+  border-radius: 0;
+}
+
+.ua-divider {
+  width: 1px;
+  height: 22px;
+  background: rgba(255, 255, 255, .08);
+  display: block;
+}
+
+/* base */
+.ua-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 300;
+  line-height: 1;
+
+  color: rgba(255, 255, 255, .92);
+}
+
+.ua-btn i {
+  font-size: 14px;
+  line-height: 0;
+}
+
+/* Minha Conta */
+.ua-account:hover {
+  background: rgba(255, 255, 255, .08);
+}
+
+/* ativo */
+.ua-account.active {
+  background: rgba(255, 255, 255, .08);
+}
+
+/* Sair */
+.ua-logout {
+  color: #ef4444;
+  background: rgba(255, 255, 255, .08);
+}
+
+.ua-logout i {
+  color: #ef4444;
+}
+
+.ua-logout:hover {
+  background: rgba(255, 255, 255, .08);
+}
+
+/* Sidebar helper (se usar) */
+.user-actions--sidebar {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.user-actions--sidebar .ua-btn {
+  flex: 1;
+  justify-content: center;
+}
+
+/* garante que não volte underline em links */
+.sidebar-footer a,
+.sidebar a {
+  text-decoration: none !important;
+}
+
+
+/* ===== Setas do mês: remover qualquer traço / underline ===== */
+.agenda-cal-nav .icon-btn,
+.period-nav .icon-btn {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  box-shadow: none !important;
+  background-image: none !important;
+}
+
+/* garante que o caractere < > não herde estilo de texto */
+.agenda-cal-nav .icon-btn::before,
+.agenda-cal-nav .icon-btn::after,
+.period-nav .icon-btn::before,
+.period-nav .icon-btn::after {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+.icon-btn i {
+  pointer-events: none;
+  line-height: 1;
+}
+
+/* Reduz tamanho dos chevrons (Dashboard + Agenda) */
+.icon-btn i.fa-chevron-left,
+.icon-btn i.fa-chevron-right {
+  font-size: 14px;
+  /* ajuste fino: 12px se quiser menor ainda */
+  line-height: 1;
+}
+
+
+/* ===============================
+   MODAL – INPUTS (Alterar senha)
+   =============================== */
+
+#appModal .form-row input[type="password"],
+#appModal .form-row input[type="text"] {
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(15, 23, 42, 0.12);
+  background: #fff;
+  font-size: 14px;
+  color: #0f172a;
+  transition: border-color .15s ease, box-shadow .15s ease;
+}
+
+/* Placeholder */
+#appModal .form-row input::placeholder {
+  color: #94a3b8;
+}
+
+/* Focus bonito (igual resto do sistema) */
+#appModal .form-row input:focus {
+  outline: none;
+  border-color: #0f172a;
+  box-shadow: 0 0 0 3px rgba(15, 23, 42, 0.08);
+}
+
+/* Label */
+#appModal .form-row label {
+  display: block;
+  font-size: 12px;
+  font-weight: 600;
+  color: #475569;
+  margin-bottom: 6px;
+}
+
+#appModal .form-row input:hover {
+  border-color: rgba(15, 23, 42, 0.25);
+}
+
+/* Integrações: esconder área quando toggle off */
+.is-hidden {
+  display: none !important;
+}
+
+
+/* ===== Integração Google ===== */
+
+.integr-card {
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, .08);
+  border-radius: 18px;
+  padding: 22px;
+  max-width: 520px;
+  margin: 0 auto;
+  box-shadow: 0 18px 40px rgba(2, 6, 23, .08);
+}
+
+.integr-head {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.integr-title {
+  margin: 0;
+  font-size: 18px;
+  font-weight: 700;
+}
+
+.integr-desc {
+  margin: 6px 0 0;
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.integr-toggle {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  font-size: 13px;
+  color: var(--text);
+}
+
+/* caixa vazia */
+.gc-empty {
+  margin-top: 18px;
+  border: 1px dashed rgba(15, 23, 42, .18);
+  border-radius: 14px;
+  padding: 22px;
+  text-align: center;
+  font-size: 13px;
+  color: rgba(15, 23, 42, .65);
+  background: #fafafa;
+}
+
+/* ação */
+.integr-action {
+  margin-top: 18px;
+  display: flex;
+  justify-content: center;
+}
+
+/* botão */
+.gc-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  color: #fff;
+  text-decoration: none !important;
+  padding: 14px 26px;
+  border-radius: 14px;
+  font-weight: 700;
+  font-size: 14px;
+  box-shadow: 0 10px 25px rgba(0, 0, 0, .2);
+  transition: transform .15s ease, opacity .15s ease;
+}
+
+.gc-btn:hover {
+  opacity: .92;
+  transform: translateY(-1px);
+}
+
+.gc-btn:active {
+  transform: scale(.97);
+}
+
+/* mobile */
+@media (max-width: 520px) {
+  .integr-card {
+    padding: 18px;
+  }
+
+  .integr-title {
+    font-size: 17px;
+  }
+}
+
+/* ===== LEGAL PAGES (privacy/terms) ===== */
+.auth-body.legal {
+  align-items: flex-start;
+  /* <- não corta o topo */
+  justify-content: center;
+  min-height: 100vh;
+  padding: 28px 16px;
+}
+
+.auth-card.legal-card {
+  width: min(900px, 100%);
+  background: #fff;
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  box-shadow: var(--shadow);
+  padding: 18px 18px 14px;
+
+  /* Se o texto for grande, rola dentro da card sem “sumir topo” */
+  max-height: calc(100vh - 56px);
+  overflow: auto;
+}
+
+/* tipografia melhor dentro do texto */
+.legal-card .auth-title,
+.legal-card .auth-subtitle {
+  text-align: left;
+}
+
+.legal-card h3 {
+  margin: 18px 0 8px;
+  font-size: 14px;
+}
+
+.legal-card p {
+  margin: 10px 0;
+}
+
+.legal-card ul {
+  margin: 8px 0 14px;
+  padding-left: 18px;
+}
+
+/* “Voltar” como botão (sem cara de link feio) */
+.legal-card .auth-links {
+  align-items: flex-start;
+}
+
+.legal-card .auth-links a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border: 1px solid var(--line);
+  background: #fff;
+  padding: 10px 12px;
+  border-radius: 12px;
+
+  text-decoration: none !important;
+  color: var(--text);
+}
+
+.legal-card .auth-links a:hover {
+  background: #f8fafc;
+  text-decoration: none !important;
+}
+
+/* Mobile */
+@media (max-width: 520px) {
+  .legal-card {
+    padding: 22px 20px;
+  }
+
+  .legal-card .auth-title {
+    font-size: 22px;
+  }
+}
+
+/* Google Calendar (Account > Integrações) */
+#gcArea {
+  margin-top: 12px;
+}
+
+/* =========================================================
+   Google Calendar (Integrações) — Caixa "conta conectada"
+   (somente estilização)
+   ========================================================= */
+
+/* garante que o botão/link não fique sublinhado */
+.gc-btn {
+  text-decoration: none !important;
+}
+
+/* Caixa base (serve pro conectado e pro vazio, se você quiser reaproveitar) */
+.gc-box {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, .10);
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .06);
+}
+
+/* bloco de texto (lado esquerdo) */
+.gc-box-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  min-width: 0;
+  /* permite quebrar email bonito sem estourar */
+}
+
+/* some com o "Conta conectada" (se ainda existir no HTML) */
+.gc-box-title {
+  display: none !important;
+}
+
+/* email */
+.gc-box-email {
+  font-weight: 500;
+  font-size: 14px;
+  color: rgba(15, 23, 42, .92);
+  word-break: break-word;
+}
+
+/* se você tiver uma segunda linha tipo "Calendário: Padrão da conta" */
+.gc-box-sub,
+.gc-box-row .muted,
+.gc-box-row small {
+  font-size: 12px;
+  color: rgba(100, 116, 139, .95);
+}
+
+/* botão remover (desktop: pequeno à direita) */
+#gcRemoveBtn,
+.gc-remove {
+  border: 0 !important;
+  background: rgba(239, 68, 68, .12) !important;
+  color: #ef4444 !important;
+  font-weight: 700 !important;
+  border-radius: 10px !important;
+  padding: 10px 14px !important;
+  line-height: 1 !important;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+/* hover */
+#gcRemoveBtn:hover,
+.gc-remove:hover {
+  background: rgba(239, 68, 68, .16) !important;
+}
+
+/* MOBILE: empilha e deixa o Remover full-width igual teu print */
+@media (max-width: 640px) {
+  .gc-box {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    padding: 16px;
+  }
+
+  #gcRemoveBtn,
+  .gc-remove {
+    width: 100% !important;
+    padding: 12px 14px !important;
+    text-align: center;
+    white-space: normal;
+  }
+}
+
+
+/* =========================================================
+   FIX: Estilo novo só no CONNECTED e vazio volta ao padrão
+   ========================================================= */
+
+/* 1) Estilo "bonito" APENAS no estado conectado */
+#gcConnected.gc-box {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, .10);
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  box-shadow: 0 10px 30px rgba(15, 23, 42, .03);
+}
+
+/* 2) O estado vazio volta simples (como era antes) */
+#gcEmpty.gc-box {
+  width: 100%;
+  border: 1px solid rgba(15, 23, 42, .10);
+  background: #fff;
+  border-radius: 14px;
+  padding: 16px 18px;
+  display: block;
+  /* não flex */
+  box-shadow: none;
+  /* sem sombra forte */
+}
+
+/* mensagem do vazio centralizada */
+#gcEmpty .gc-empty-msg {
+  text-align: center;
+  color: rgba(100, 116, 139, .95);
+  font-size: 12px;
+  line-height: 1.4;
+  padding: 18px 10px;
+}
+
+/* Mobile: vazio continua "normal", sem empilhar nada */
+@media (max-width: 640px) {
+  #gcEmpty.gc-box {
+    padding: 16px;
+  }
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* ÍCONE */
+.brand-icon {
+  width: 26px;
+  height: 26px;
+  object-fit: contain;
+}
+
+/* TEXTO */
+.brand-text {
+  font-weight: 400;
+  /* menos bold */
+  font-size: 15px;
+  letter-spacing: 0.2px;
+  color: #ffffff;
+  /* se estiver na topbar escura */
+}
+
+/* ========= TOPBAR (mobile like Assessor) ========= */
+.topbar {
+  position: sticky;
+  top: 0;
+  z-index: 30;
+  background: #0b0f17;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  padding: 12px 14px;
+  gap: 10px;
+}
+
+
+/* logo / brand */
+.topbar-brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.brand-icon {
+  width: 22px;
+  height: 22px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-text {
+  font-weight: 500;
+  /* menos bold */
+  font-size: 15px;
+  letter-spacing: .2px;
+  color: rgba(255, 255, 255, .95);
+  white-space: nowrap;
+}
+
+/* spacer p/ centralizar 100% (igual assessor) */
+.topbar-spacer {
+  width: 42px;
+  height: 42px;
+}
+
+/* desktop mantém seu nav normal */
+@media (max-width: 768px) {
+  .topbar-nav {
+    display: none !important;
+  }
+
+  .topbar-right {
+    display: none !important;
+  }
+
+  /* centraliza a marca no topo (igual assessor) */
+  .topbar {
+    justify-content: space-between;
+  }
+
+  .topbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+/* ========= SIDEBAR (mobile white like Assessor) ========= */
+.sidebar {
+  position: fixed;
+  inset: 0 auto 0 0;
+  width: 300px;
+  max-width: 86vw;
+  background: #ffffff;
+  color: #0f172a;
+  transform: translateX(-110%);
+  transition: transform .2s ease;
+  z-index: 50;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 18px 60px rgba(0, 0, 0, .22);
+}
+
+.sidebar.open {
+  transform: translateX(0);
+}
+
+.sidebar-head {
+  padding: 14px 14px 6px;
+  display: flex;
+  justify-content: flex-start;
+}
+
+.sidebar-close {
+  width: 42px;
+  height: 42px;
+  border-radius: 14px;
+  border: 1px solid rgba(15, 23, 42, .10);
+  background: #fff;
+  cursor: pointer;
+  display: grid;
+  place-items: center;
+  font-size: 20px;
+  color: rgba(15, 23, 42, .75);
+}
+
+.sidebar-close:hover {
+  background: #f1f5f9;
+}
+
+.sidebar-links {
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.sidebar-links a,
+.sidebar-footer a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 12px;
+  border-radius: 14px;
+  text-decoration: none;
+  color: rgba(15, 23, 42, .92);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.sidebar-links a i,
+.sidebar-footer a i {
+  width: 18px;
+  text-align: center;
+  color: rgba(100, 116, 139, .95);
+}
+
+.sidebar-links a.active {
+  background: #f1f5f9;
+}
+
+.sidebar-links a:hover,
+.sidebar-footer a:hover {
+  background: #f8fafc;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding: 10px 12px 14px;
+  border-top: 1px solid rgba(15, 23, 42, .08);
+}
+
+/* backdrop como assessor */
+.backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, .35);
+  z-index: 40;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .2s ease;
+}
+
+.backdrop.show {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+@media (max-width: 768px) {
+  .topbar-nav {
+    display: none !important;
+  }
+
+  .topbar-right {
+    display: none !important;
+  }
+
+  .topbar {
+    position: sticky;
+    top: 0;
+  }
+
+  .topbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  .topbar-spacer {
+    display: block;
+    width: 44px;
+    height: 44px;
+  }
+}
+
+/* ===========================
+   MOBILE TOPBAR (Assessor-like)
+   =========================== */
+@media (max-width: 768px) {
+
+  .topbar {
+    height: 56px;
+    /* altura mais parecida */
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: sticky;
+    top: 0;
+  }
+
+  /* esconde menu desktop */
+  .topbar-nav,
+  .topbar-right {
+    display: none !important;
+  }
+
+
+  /* centralização REAL da marca, sem ser empurrada pelo burger */
+  .topbar-brand {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .brand-icon {
+    width: 22px;
+    height: 22px;
+    display: block;
+    object-fit: contain;
+  }
+
+  .brand-text {
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: .2px;
+    color: rgba(255, 255, 255, .95);
+    white-space: nowrap;
+  }
+
+  /* spacer do lado direito só pra manter simetria visual */
+  .topbar-spacer {
+    display: block !important;
+    width: 40px;
+    height: 40px;
+  }
+}
+
+/* DESKTOP: burger some */
+@media (min-width: 769px) {
+  .burger-btn {
+    display: none !important;
+  }
+
+  .topbar-spacer {
+    display: none !important;
+  }
+}
+
+/* =========================================================
+   MOBILE PATCH — Topbar + Sidebar estilo "Assessor"
+   (cole NO FINAL do app.css pra sobrescrever conflitos)
+   ========================================================= */
+
+/* Ícone + texto */
+.brand-icon {
+  width: 28px;
+  height: 28px;
+  object-fit: contain;
+  display: block;
+}
+
+.brand-text {
+  font-weight: 500;
+  /* menos bold */
+  font-size: 15px;
+  letter-spacing: .2px;
+}
+
+/* ---------- DESKTOP: burger nunca aparece ---------- */
+@media (min-width: 769px) {
+  .burger {
+    display: none !important;
+  }
+}
+
+/* ---------- MOBILE: topbar como Assessor ---------- */
+@media (max-width: 768px) {
+
+  .topbar {
+    position: sticky;
+    top: 0;
+    height: 56px;
+    padding: 0 14px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  /* some menu desktop no mobile */
+  .topbar-nav,
+  .topbar-right {
+    display: none !important;
+  }
+
+  /* hamburger fino e “clean” igual Assessor */
+  .burger {
+    display: inline-flex !important;
+    width: 44px;
+    height: 44px;
+    padding: 0;
+    border: 0 !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    align-items: center;
+    /* centraliza vertical */
+    justify-content: center;
+    cursor: pointer;
+  }
+
+  .burger span {
+    display: block;
+    width: 18px;
+    /* um pouco mais longo */
+    height: 2px;
+    /* mais fino */
+    border-radius: 2px;
+    margin: 3px 0;
+    /* espaçamento correto */
+    background: rgba(255, 255, 255, .92);
+  }
+
+  /* marca centralizada de verdade */
+  .topbar-left {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+
+  /* garante alinhamento da marca */
+  .topbar-brand,
+  .topbar-left .logo {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
+
+/* ---------- MOBILE: Sidebar branca estilo Assessor ---------- */
+@media (max-width: 768px) {
+
+  .sidebar {
+    width: 300px;
+    max-width: 86vw;
+    background: #fff !important;
+    color: #0f172a !important;
+    box-shadow: 0 18px 60px rgba(0, 0, 0, .22);
+  }
+
+  /* header da sidebar só com o X na esquerda */
+  .sidebar-head {
+    padding: 14px 14px 6px !important;
+    display: flex !important;
+    justify-content: flex-start !important;
+    border-bottom: 0 !important;
+  }
+
+  /* se por acaso ainda existir logo lá dentro, esconde */
+  .sidebar-head .logo {
+    display: none !important;
+  }
+
+  /* botão X (se você usou a classe sidebar-close) */
+  .sidebar-close {
+    width: 42px;
+    height: 42px;
+    border-radius: 14px;
+    border: 1px solid rgba(15, 23, 42, .10);
+    background: #fff;
+    cursor: pointer;
+    display: grid;
+    place-items: center;
+    font-size: 20px;
+    color: rgba(15, 23, 42, .75);
+  }
+
+  .sidebar-close:hover {
+    background: #f1f5f9;
+  }
+
+  .sidebar-links a,
+  .sidebar-footer a {
+    color: rgba(15, 23, 42, .92) !important;
+    font-weight: 500 !important;
+    border-radius: 14px !important;
+  }
+
+  .sidebar-links a.active {
+    background: #f1f5f9 !important;
+  }
+
+  .sidebar-links a:hover,
+  .sidebar-footer a:hover {
+    background: #f8fafc !important;
+  }
+
+  .sidebar-footer {
+    border-top: 1px solid rgba(15, 23, 42, .08) !important;
+    background: transparent !important;
+  }
+
+  .backdrop {
+    background: rgba(0, 0, 0, .35) !important;
+  }
+}
+
+.auth-brand {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 14px;
+}
+
+.auth-brand .brand-icon {
+  width: 40px;
+  height: 40px;
+  object-fit: contain;
+}
+
+.auth-brand .brand-text {
+  font-weight: 500; /* menos bold, como você pediu */
+  font-size: 16px;
+  color: #0f172a;
+}
+
+/* ===== HAMBURGER COM FONT AWESOME (mobile) ===== */
+.burger-btn i {
+  font-size: 20px;
+  color: rgba(255,255,255,.95);
+}
+
+/* garante alinhamento correto */
+.burger-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* desktop continua escondido */
+@media (min-width: 769px) {
+  .burger-btn {
+    display: none !important;
+  }
+}
+
+/* ===== FIX DEFINITIVO: hamburger SEM CAIXA (Assessor style) ===== */
+@media (max-width: 768px) {
+  .burger-btn {
+    all: unset;                  /* zera TODA herança problemática */
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+  }
+
+  .burger-btn i {
+    font-size: 20px;
+    color: rgba(255, 255, 255, 0.95);
+    line-height: 1;
+  }
+}
+
+/* ===== Transactions: coluna Ações (corrigido) ===== */
+
+/* fixa uma largura pra coluna, e alinha header/ícones no mesmo eixo */
+#txTable thead th:last-child,
+#txTable tbody td:last-child {
+  width: 86px;            /* ajusta se quiser (80~100) */
+  text-align: center;
+  white-space: nowrap;
+}
+
+/* NÃO afetar linhas com colspan (ex: "Carregando...") */
+#txTable tbody td:last-child[colspan] {
+  text-align: left;       /* volta ao normal */
+}
+
+/* ícones lado a lado com gap pequeno */
+#txTable tbody td:last-child:not([colspan]) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;               /* <<< aqui controla o "afastado" */
+}
+
+/* ===== Paginação (clean) ===== */
+.pagination button,
+.pagination .btn,
+.pagination a {
+  border: 0 !important;
+  box-shadow: none !important;
+}
+
+/* estado desabilitado */
+.pagination .is-disabled,
+.pagination button:disabled,
+.pagination a[aria-disabled="true"] {
+  opacity: .45;
+  pointer-events: none;
+}
+
+/* === Unified Buttons === */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  border-radius: 12px;
+  padding: 11px 14px;
+  font-weight: 800;
+  font-size: 13px;
+  cursor: pointer;
+  border: 1px solid transparent;
+  transition: transform .08s ease, opacity .15s ease, background .15s ease, border-color .15s ease;
+}
+
+.btn:active { transform: scale(.98); }
+.btn:disabled { opacity: .55; cursor: not-allowed; }
+
+.btn-primary { background: #0b1220; color: #fff; }
+.btn-primary:hover { opacity: .93; }
+
+.btn-ghost { background: #fff; border-color: var(--line); color: var(--text); }
+.btn-ghost:hover { background: #f8fafc; }
+
+.btn-danger { background: var(--red); color: #fff; }
+.btn-danger:hover { opacity: .92; }
+
+/* Modal de Transação um pouco mais largo que Categorias */
+#txModal .tx-dialog {
+  width: min(720px, 100%);
+}
+
+/* Igualar visual do input time aos selects */
+.form-row input[type="time"] {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+
+  width: 100%;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+  background-color: #fff;
+  font-size: 15px;
+  line-height: 1.2;
+  color: #111827;
+
+  box-shadow: 0 1px 2px rgba(0,0,0,0.03);
+  outline: none;
+}
+
+/* Hover / focus igual ao select */
+.form-row input[type="time"]:hover {
+  border-color: #d1d5db;
+}
+
+.form-row input[type="time"]:focus {
+  border-color: #111827;
+  box-shadow: 0 0 0 2px rgba(17,24,39,0.08);
+}
+
+/* Ícone do relógio alinhado */
+.form-row input[type="time"]::-webkit-calendar-picker-indicator {
+  opacity: 0.6;
+  cursor: pointer;
+}
+
+.form-row input[type="time"]:hover::-webkit-calendar-picker-indicator {
+  opacity: 0.9;
+}
+
+/* ===== Agenda: menu ⋮ ===== */
+.agenda-evt {
+  position: relative;
+}
+
+.agenda-evt-actions {
+  position: relative;
+  justify-self: end;
+}
+
+.agenda-evt-menu {
+  position: absolute;
+  right: 8px;
+  top: 42px;
+  width: 170px;
+  background: #fff;
+  border: 1px solid rgba(15, 23, 42, .10);
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.10);
+  padding: 6px;
+  z-index: 50;
+}
+
+.agenda-evt-menu[hidden] { display: none !important; }
+
+.agenda-evt-menu button {
+  width: 100%;
+  border: 0;
+  background: transparent;
+  text-align: left;
+  padding: 10px 10px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-weight: 600;
+  color: rgba(15,23,42,.90);
+}
+
+.agenda-evt-menu button:hover {
+  background: rgba(15, 23, 42, .04);
+}
+
+.agenda-evt-menu .danger {
+  color: #b91c1c;
+}
+
+/* ===== AGENDA: backdrop do cat-modal precisa ficar abaixo do modal ===== */
+#agBackdrop.modal-backdrop {
+  z-index: 55; /* abaixo do .cat-modal (60) */
+}
+
+/* garantia extra (opcional) */
+#agModal.cat-modal {
+  z-index: 60;
+}
+
+/* ===== DESATIVAR ANIMAÇÃO EM TODOS OS MODAIS (override final) ===== */
+.backdrop,
+.cat-modal,
+#confirmModal {
+  transition: none !important;
+  animation: none !important;
+  transform: none !important;
+}
+
+/* garante que o open não aplique transform */
+.cat-modal.open {
+  transform: none !important;
+}
+
+/* remove underline do botão do Google Agenda */
+a.gc-btn,
+a.gc-btn:visited,
+a.gc-btn:hover,
+a.gc-btn:active,
+a.gc-btn:focus {
+  text-decoration: none !important;
+}
+
+a.gc-btn * {
+  text-decoration: none !important;
+}
