@@ -25,9 +25,11 @@ $y = (int)($_GET['y'] ?? date('Y'));
 $m = max(1, min(12, $m));
 $y = max(1970, $y);
 
-function last_day_of_month(int $y, int $m): int {
-  return cal_days_in_month(CAL_GREGORIAN, $m, $y);
+function last_day_of_month($year, $month) {
+  $date = new DateTime("$year-$month-01");
+  return (int)$date->format('t');
 }
+
 function ymdate(int $y, int $m, int $d): string {
   return sprintf('%04d-%02d-%02d', $y, $m, $d);
 }
