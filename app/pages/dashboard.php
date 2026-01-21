@@ -167,7 +167,7 @@ $nextPeriod = $nextIsCurrent ? $period : 'month';
 
 <script>
   (() => {
-    const BASE = <?= json_encode(rtrim((string)$base, '/')) ?>;
+    const BASE = window.location.origin;
     const PERIOD = <?= json_encode($period) ?>;
     const M = <?= (int)$month ?>;
     const Y = <?= (int)$year ?>;
