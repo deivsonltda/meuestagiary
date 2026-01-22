@@ -275,17 +275,20 @@
 
     function openDrawer(title) {
       if (!modal) return;
-      modalTitle && (modalTitle.textContent = title || "Editar Transação");
+      modalTitle && (modalTitle.textContent = title || "Categoria");
       showBackdrop();
       modal.classList.add("open");
-      setTimeout(() => fItem && fItem.focus(), 50);
+      setTimeout(() => inpName && inpName.focus(), 50);
     }
 
     function closeDrawer() {
       if (!modal) return;
       modal.classList.remove("open");
       hideBackdrop();
-      if (fId) fId.value = "";
+
+      state.editingId = null;
+      if (inpName) inpName.value = "";
+      if (inpColor) inpColor.value = "#3b82f6";
     }
 
     function openConfirm(text, onOk) {
