@@ -31,33 +31,52 @@ if ($action === 'list') {
 
   $items = $res['data'] ?? [];
 
-  if (count($items) === 0) {
-    $defaults = [
-      ['user_key' => $userKey, 'name' => 'Alimentação', 'color' => '#3b82f6'],
-      ['user_key' => $userKey, 'name' => 'Mercado', 'color' => '#60a5fa'],
-      ['user_key' => $userKey, 'name' => 'Vestuário', 'color' => '#a855f7'],
-      ['user_key' => $userKey, 'name' => 'Pets', 'color' => '#a16207'],
-      ['user_key' => $userKey, 'name' => 'Impostos', 'color' => '#f59e0b'],
-      ['user_key' => $userKey, 'name' => 'Lazer e Entretenimento', 'color' => '#22c55e'],
-      ['user_key' => $userKey, 'name' => 'Cuidados Pessoais', 'color' => '#06b6d4'],
-      ['user_key' => $userKey, 'name' => 'Casa', 'color' => '#64748b'],
-      ['user_key' => $userKey, 'name' => 'Educação', 'color' => '#ef4444'],
-      ['user_key' => $userKey, 'name' => 'Cartão de Crédito', 'color' => '#1e40af'], // azul escuro
-      ['user_key' => $userKey, 'name' => 'Doações', 'color' => '#f97316'],          // laranja
-      ['user_key' => $userKey, 'name' => 'Saúde', 'color' => '#10b981'],            // verde/teal
-      ['user_key' => $userKey, 'name' => 'Recebimentos', 'color' => '#16a34a'],     // verde
-      ['user_key' => $userKey, 'name' => 'Transporte', 'color' => '#0ea5e9'],       // sky
-      ['user_key' => $userKey, 'name' => 'Utilidades', 'color' => '#94a3b8'],       // cinza claro
-      ['user_key' => $userKey, 'name' => 'Viagem', 'color' => '#8b5cf6'],           // violeta
-      ['user_key' => $userKey, 'name' => 'Outros', 'color' => '#475569'],           // slate
-    ];
+  // ✅ FIX: seed inteligente
+  // - Se não tiver nenhuma categoria, insere todas as defaults
+  // - Se já tiver algumas, insere apenas as que faltam
+  // - Evita depender do register.php e evita inconsistência
+  $defaults = [
+    ['user_key' => $userKey, 'name' => 'Alimentação',          'color' => '#3b82f6'],
+    ['user_key' => $userKey, 'name' => 'Mercado',              'color' => '#60a5fa'],
+    ['user_key' => $userKey, 'name' => 'Vestuário',            'color' => '#a855f7'],
+    ['user_key' => $userKey, 'name' => 'Pets',                 'color' => '#a16207'],
+    ['user_key' => $userKey, 'name' => 'Impostos',             'color' => '#f59e0b'],
+    ['user_key' => $userKey, 'name' => 'Lazer e Entretenimento','color' => '#22c55e'],
+    ['user_key' => $userKey, 'name' => 'Cuidados Pessoais',    'color' => '#06b6d4'],
+    ['user_key' => $userKey, 'name' => 'Casa',                 'color' => '#64748b'],
+    ['user_key' => $userKey, 'name' => 'Educação',             'color' => '#ef4444'],
+    ['user_key' => $userKey, 'name' => 'Cartão de Crédito',    'color' => '#1e40af'], // azul escuro
+    ['user_key' => $userKey, 'name' => 'Doações',              'color' => '#f97316'], // laranja
+    ['user_key' => $userKey, 'name' => 'Saúde',                'color' => '#10b981'], // verde/teal
+    ['user_key' => $userKey, 'name' => 'Recebimentos',         'color' => '#16a34a'], // verde
+    ['user_key' => $userKey, 'name' => 'Transporte',           'color' => '#0ea5e9'], // sky
+    ['user_key' => $userKey, 'name' => 'Utilidades',           'color' => '#94a3b8'], // cinza claro
+    ['user_key' => $userKey, 'name' => 'Viagem',               'color' => '#8b5cf6'], // violeta
+    ['user_key' => $userKey, 'name' => 'Outros',               'color' => '#475569'], // slate
+  ];
 
+  // Mapa de existentes (case-insensitive)
+  $existingNames = [];
+  if (is_array($items)) {
+    foreach ($items as $row) {
+      if (!empty($row['name'])) {
+        $existingNames[mb_strtolower((string)$row['name'], 'UTF-8')] = true;
+      }
+    }
+  }
 
-    // lote
-    $seed = supabase_request('POST', '/rest/v1/categories', [], $defaults);
+  // Insere somente as que faltam
+  $toInsert = [];
+  foreach ($defaults as $cat) {
+    $k = mb_strtolower((string)$cat['name'], 'UTF-8');
+    if (!isset($existingNames[$k])) $toInsert[] = $cat;
+  }
+
+  if ($toInsert) {
+    $seed = supabase_request('POST', '/rest/v1/categories', [], $toInsert);
     if (!$seed['ok']) json_out(['ok' => false, 'error' => $seed['error']], 500);
 
-    // recarrega
+    // recarrega para devolver com ids/created_at
     $res2 = supabase_request('GET', '/rest/v1/categories', [
       'select'   => 'id,name,color,created_at',
       'user_key' => 'eq.' . $userKey,
