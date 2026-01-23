@@ -142,10 +142,11 @@ if (!$profileCheck['ok'] || empty($profileCheck['data']) || !is_array($profileCh
   redirect_with_error('Não encontramos seu pré-cadastro (user_key inválida). Volte ao WhatsApp e solicite um novo link.', $q);
 }
 
+// ✅ FIX: PostgREST "return=minimal" deve ir no header Prefer, não como querystring "return"
 $patchProfile = supabase_request(
   'PATCH',
   '/rest/v1/profiles',
-  ['user_key' => "eq.{$uk}", 'return' => 'minimal'],
+  ['user_key' => "eq.{$uk}", 'prefer' => 'return=minimal'],
   [
     'email' => $email,
     'full_name' => $name,
@@ -196,19 +197,21 @@ foreach ($defaults as $cat) {
 }
 
 if ($toInsert) {
+  // ✅ FIX: return=minimal via Prefer header
   supabase_request(
     'POST',
     '/rest/v1/categories',
-    ['return' => 'minimal'],
+    ['prefer' => 'return=minimal'],
     $toInsert
   );
 }
 
 // 5) marca onboarding como completed
+// ✅ FIX: return=minimal via Prefer header
 supabase_request(
   'PATCH',
   '/rest/v1/onboarding_requests',
-  ['id' => "eq.{$onbId}", 'return' => 'minimal'],
+  ['id' => "eq.{$onbId}", 'prefer' => 'return=minimal'],
   [
     'status' => 'completed',
     'completed_at' => now_iso(),
