@@ -123,11 +123,10 @@ if (!$userId) {
   redirect_with_error('Falha ao criar conta. Tente novamente.', $q);
 }
 
-// 3) ATUALIZA profile EXISTENTE PELO user_key (somente campos do cadastro)
+// 3) ATUALIZA profile EXISTENTE PELO user_key
 $trialStart = now_iso();
-$trialEnd   = add_days_iso(7); // ajuste a duração do trial aqui
+$trialEnd   = add_days_iso(7);
 
-// (Opcional, mas recomendado) garantir que existe profile com esse user_key
 $profileCheck = supabase_request(
   'GET',
   '/rest/v1/profiles',
@@ -142,7 +141,6 @@ if (!$profileCheck['ok'] || empty($profileCheck['data']) || !is_array($profileCh
   redirect_with_error('Não encontramos seu pré-cadastro (user_key inválida). Volte ao WhatsApp e solicite um novo link.', $q);
 }
 
-// ✅ FIX: PostgREST "return=minimal" deve ir no header Prefer, não como querystring "return"
 $patchProfile = supabase_request(
   'PATCH',
   '/rest/v1/profiles',
@@ -160,19 +158,28 @@ if (!$patchProfile['ok']) {
   redirect_with_error('Falha ao atualizar seu perfil. Tente novamente.', $q);
 }
 
-// 4) cria categorias padrão (inclui Alimentação)
+// 4) cria categorias padrão COMPLETAS (padrão pra todos)
 $defaults = [
-  ['user_key' => $uk, 'name' => 'Mercado',           'color' => '#3b82f6'],
-  ['user_key' => $uk, 'name' => 'Vestuário',         'color' => '#a855f7'],
-  ['user_key' => $uk, 'name' => 'Pets',              'color' => '#a16207'],
-  ['user_key' => $uk, 'name' => 'Impostos',          'color' => '#f59e0b'],
-  ['user_key' => $uk, 'name' => 'Lazer',             'color' => '#22c55e'],
-  ['user_key' => $uk, 'name' => 'Cuidados Pessoais', 'color' => '#06b6d4'],
-  ['user_key' => $uk, 'name' => 'Casa',              'color' => '#64748b'],
-  ['user_key' => $uk, 'name' => 'Educação',          'color' => '#ef4444'],
-  ['user_key' => $uk, 'name' => 'Alimentação',       'color' => '#f97316'],
+  ['user_key' => $uk, 'name' => 'Alimentação',           'color' => '#3b82f6'],
+  ['user_key' => $uk, 'name' => 'Mercado',               'color' => '#60a5fa'],
+  ['user_key' => $uk, 'name' => 'Vestuário',             'color' => '#a855f7'],
+  ['user_key' => $uk, 'name' => 'Pets',                  'color' => '#a16207'],
+  ['user_key' => $uk, 'name' => 'Impostos',              'color' => '#f59e0b'],
+  ['user_key' => $uk, 'name' => 'Lazer e Entretenimento','color' => '#22c55e'],
+  ['user_key' => $uk, 'name' => 'Cuidados Pessoais',     'color' => '#06b6d4'],
+  ['user_key' => $uk, 'name' => 'Casa',                  'color' => '#64748b'],
+  ['user_key' => $uk, 'name' => 'Educação',              'color' => '#ef4444'],
+  ['user_key' => $uk, 'name' => 'Cartão de Crédito',     'color' => '#1e40af'],
+  ['user_key' => $uk, 'name' => 'Doações',               'color' => '#f97316'],
+  ['user_key' => $uk, 'name' => 'Saúde',                 'color' => '#10b981'],
+  ['user_key' => $uk, 'name' => 'Recebimentos',          'color' => '#16a34a'],
+  ['user_key' => $uk, 'name' => 'Transporte',            'color' => '#0ea5e9'],
+  ['user_key' => $uk, 'name' => 'Utilidades',            'color' => '#94a3b8'],
+  ['user_key' => $uk, 'name' => 'Viagem',                'color' => '#8b5cf6'],
+  ['user_key' => $uk, 'name' => 'Outros',                'color' => '#475569'],
 ];
 
+// evita duplicar: busca existentes e insere só faltantes
 $existing = supabase_request(
   'GET',
   '/rest/v1/categories',
@@ -186,28 +193,33 @@ $existing = supabase_request(
 $existingNames = [];
 if ($existing['ok'] && is_array($existing['data'])) {
   foreach ($existing['data'] as $row) {
-    if (!empty($row['name'])) $existingNames[strtolower((string)$row['name'])] = true;
+    if (!empty($row['name'])) {
+      $existingNames[mb_strtolower((string)$row['name'], 'UTF-8')] = true;
+    }
   }
 }
 
 $toInsert = [];
 foreach ($defaults as $cat) {
-  $k = strtolower($cat['name']);
+  $k = mb_strtolower((string)$cat['name'], 'UTF-8');
   if (!isset($existingNames[$k])) $toInsert[] = $cat;
 }
 
 if ($toInsert) {
-  // ✅ FIX: return=minimal via Prefer header
-  supabase_request(
+  $seed = supabase_request(
     'POST',
     '/rest/v1/categories',
     ['prefer' => 'return=minimal'],
     $toInsert
   );
+
+  // se falhar, melhor avisar logo (evita “achar que cadastrou tudo”)
+  if (!$seed['ok']) {
+    redirect_with_error('Falha ao criar categorias padrão. Tente novamente.', $q);
+  }
 }
 
 // 5) marca onboarding como completed
-// ✅ FIX: return=minimal via Prefer header
 supabase_request(
   'PATCH',
   '/rest/v1/onboarding_requests',
@@ -218,7 +230,7 @@ supabase_request(
   ]
 );
 
-// 6) webhook (n8n) — dispara mensagem de boas-vindas (no n8n você coloca Delay 3s)
+// 6) webhook (n8n) — dispara mensagem de boas-vindas
 $hook = (string)app_config('onboarding_complete_webhook', '');
 if ($hook) {
   $payload = [
