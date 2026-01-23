@@ -35,7 +35,7 @@ $error = trim((string)($_GET['error'] ?? ''));
 $redir = isset($_GET['redir']) && $_GET['redir'] === '1';
 
 // WhatsApp destino (mantive igual ao que você já tinha)
-$waUrl = "https://wa.me/5581984521498";
+$waUrl = "https://wa.me/5581936181079";
 
 // Se concluiu e é pra redirecionar, mostra tela full-screen (sem mexer no fluxo)
 if ($success && $redir) {
